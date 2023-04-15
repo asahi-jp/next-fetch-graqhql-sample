@@ -7,6 +7,8 @@ https://www.engilaboo.com/nextjs-graphql/
 # npmパッケージ
 ```
 npm i @graphql-codegen/typed-document-node @graphql-codegen/cli @graphql-codegen/typescript-operations @apollo/client
+
+npm install
 ```
 
 # .env.local
@@ -16,29 +18,13 @@ ID=<記事ID>
 ```
 
 # codegen.yml
-以下を追加
+`codegen.yml`を生成（先に`.env`を設定）
 ```
-overwrite: true
-schema: "<GraphQlエンドポイント>"
-documents:
-  - "components/**/*.graphql"
-generates:
-  ./generated/graphql.tsx:
-    plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typed-document-node"
-    config:
-      avoidOptionals:
-        objet: true
-        field: true
+./script.sh
 ```
 
 # 型生成
+`./generated/graphql.tsx`にGraphQLの型情報を生成
 ```
 npm run graphql:codegen
 ```
-codegen.ymlのdocumentsで指定したファイルとエンドポイントを基に、
-`./generated/graphql.tsx`に型情報が生成される
-
-
